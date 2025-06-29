@@ -157,7 +157,3 @@ NODE_ENV=development
 
 *Explore the world with WanderLust - Your gateway to amazing destinations!* 🌍✈️
 ```
-
-This README accurately reflects your well-structured project with proper MVC architecture, authentication system, image upload functionality, and comprehensive error handling. Your project demonstrates excellent full-stack development skills with industry-standard practices!
-
-[1] https://pplx-res.cloudinary.com/image/private/user_uploads/51843929/f2132bf1-4437-46e4-8a6b-06090792d694/image.jpg
