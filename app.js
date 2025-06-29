@@ -25,7 +25,7 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 const dbUrl = process.env.ATLASDB_URL;
-
+const PORT = process.env.PORT || 3000;
 main()
     .then(() => {
         console.log("connected to DB");
@@ -112,7 +112,7 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 
 });
