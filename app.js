@@ -68,11 +68,6 @@ const sessionOptions = {
     },
 };
 
-// app.get("/", (req, res) => {
-//     res.send("Hello This is Home Page!!");
-// });
-
-
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -98,7 +93,9 @@ app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 app.use('/uploads', express.static('uploads'));
 
-
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 app.use((req, res, next) => {
     res.status(404).render("includes/notfound");
 });
