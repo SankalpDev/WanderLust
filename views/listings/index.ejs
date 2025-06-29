@@ -1,0 +1,143 @@
+<% layout('layouts/boilerplate') %>
+
+  <body>
+    <!-- Step 3: Update your filter links in EJS -->
+    <!-- Dynamic Filter Section -->
+    <div id="filters">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <!-- This div will be horizontally scrollable -->
+            <div class="d-flex justify-content-center">
+
+              <!-- All filter items -->
+              <a href="/listings" class="filter-link">
+                <div class="filter-item <%= !category && !search ? 'active' : '' %>">
+                  <i class="fa-solid fa-list"></i>
+                  <span>All</span>
+                </div>
+              </a>
+
+              <% categories.forEach(cat=> { %>
+                <a href="/listings?category=<%= cat.key %><%= search ? '&search=' + encodeURIComponent(search) : '' %>"
+                  class="filter-link">
+                  <div class="filter-item <%= category === cat.key ? 'active' : '' %>">
+                    <i class="fa-solid <%= cat.icon %>"></i>
+                    <span>
+                      <%= cat.label %>
+                    </span>
+                  </div>
+                </a>
+                <% }) %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Results Header -->
+    <% if (search) { %>
+      <div class="container mt-3">
+        <div class="alert alert-info">
+          <div class="searched-bar">
+            <i class="fas fa-search"></i>
+            Search results for "<strong>
+              <%= search %>
+            </strong>"
+            <% if (category) { %>
+              in <strong>
+                <%= categories.find(c=> c.key === category)?.label || category %>
+              </strong>
+              <% } %>
+                <% if (allListings.length===0) { %>
+                  - No listings found
+                  <% } else { %>
+                    - <%= allListings.length %> listing(s) found
+                      <% } %>
+
+
+          </div>
+          <div class="searched-bar">
+
+
+            <!-- Clear search button -->
+            <a href="/listings<%= category ? '?category=' + category : '' %>" class="btn btn-sm btn-outline-primary ">
+              <i class="fas fa-times"></i> Clear Search
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <% } %>
+
+
+
+
+
+        </div>
+        <div class="container mt-4">
+          <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+            <% for (let listing of allListings) { %>
+              <div class="card col">
+                <img src="<%= listing.image?.url?.trim() || '/images/default.jpg' %>" class="card-img-top"
+                  alt="<%= listing.title %>" style="height: 20rem;">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <b>
+                      <%= listing.title %>
+                    </b>
+                  </h5>
+                  <p class="card-text">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <%= listing.location %>
+                  </p>
+                  <p>
+                    &#8377;<%= listing.price.toLocaleString('en-IN') %>
+                  </p>
+                  <a href="/listings/<%= listing._id %>" class="btn btn-primary">Know more</a>
+                </div>
+              </div>
+              <% } %>
+          </div>
+        </div>
+
+        <!-- Mobile List View (Shown only on mobile) -->
+        <div class="mobile-list-view" style="display: none;">
+          <div class="container mt-4">
+            <% for (let listing of allListings) { %>
+              <div class="mobile-list-item">
+                <div class="mobile-list-content">
+                  <div class="mobile-list-title">
+                    <%= listing.title %>
+                  </div>
+                  <div class="mobile-list-location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <%= listing.location %>
+                  </div>
+                  <div class="mobile-list-price">
+                    &#8377;<%= listing.price.toLocaleString('en-IN') %>
+                  </div>
+                </div>
+                <a href="/listings/<%= listing._id %>" class="mobile-more-btn">
+                  More Info
+                </a>
+              </div>
+              <% } %>
+          </div>
+        </div>
+
+  </body>
+
+
+
+
+  <!-- <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s
+                content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div> -->

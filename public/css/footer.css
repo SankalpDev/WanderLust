@@ -1,0 +1,44 @@
+.f-info {
+  margin-top: auto !important;
+  flex-shrink: 0 !important;
+  text-align: center;
+  height: 8rem;
+  display: flex;
+  background-color: #eeeeee;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.f-info-links a {
+  text-decoration: none;
+  color: #222222;
+  transition: text-decoration 0.3s ease;
+}
+
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+
+.f-info-links,
+.f-info-socials {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.f-info-socials {
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
+
+.f-info-socials i {
+  margin: 0 1rem;
+  color: #ff385c;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.f-info-socials i:hover {
+  color: #e03150;
+}

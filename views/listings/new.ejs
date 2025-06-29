@@ -1,0 +1,83 @@
+<% layout('layouts/boilerplate') %>
+
+  <body class="bg-light">
+
+    <div class="container mt-5">
+      <h2 class="text-center mb-4"><b>Let's Explore the World with WanderLust</b></h2>
+      <h4 class="text-center mb-4">Enter the Listing Details:</h4>
+
+      <div class="form-container">
+        <form action="/listings" method="POST" class="bg-white p-4 rounded shadow-sm box needs-validation" novalidate
+          enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" name="listing[title]" id="title" class="form-control" required
+              placeholder="e.g. Beachfront Villa">
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea name="listing[description]" id="description" class="form-control" rows="3"
+              placeholder="Describe the property..." required></textarea>
+
+          </div>
+
+          <!-- <div class="mb-3">
+          <label for="image" class="form-label">Image URL:</label>
+          <input type="text" name="listing[image]" id="image" class="form-control"
+            placeholder="e.g. https://example.com/image.jpg">
+        </div> -->
+          <div class="mb-3">
+            <label for="image" class="form-label">Upload Listing Image:</label>
+            <input type="file" name="listing[image]" id="image" class="form-control" required
+              placeholder="e.g. https://example.com/image.jpg">
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="price" class="form-label">Price (₹):</label>
+              <input type="number" name="listing[price]" id="price" class="form-control" required
+                placeholder="e.g. 15000">
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="location" class="form-label">Location:</label>
+              <input type="text" name="listing[location]" id="location" class="form-control" placeholder="e.g. Goa"
+                required>
+            </div>
+
+          </div>
+          <div class="mb-3">
+            <label for="country" class="form-label">Country:</label>
+            <input type="text" name="listing[country]" id="country" class="form-control" placeholder="e.g. India"
+              required>
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">Category:</label>
+            <select name="listing[category]" id="category" class="form-select" required>
+              <option value="" disabled selected>Choose a category</option>
+              <option value="beach">Beach</option>
+              <option value="mountain">Mountain</option>
+              <!-- <option value="trending">Trending</option> -->
+              <option value="city">City</option>
+              <option value="cabin">Cabin</option>
+              <option value="desert">Desert</option>
+              <option value="lake">Lake</option>
+              <option value="boat">Boat</option>
+              <option value="camping">Camping</option>
+              <option value="pool">Pool</option>
+              <option value="omg">OMG!</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a category.
+            </div>
+          </div>
+
+
+          <button type="submit" class="btn btn-primary w-100">Create Listing</button>
+        </form>
+      </div>
+    </div>
+    
+  </body>
+

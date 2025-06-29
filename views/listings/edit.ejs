@@ -1,0 +1,91 @@
+<% layout('layouts/boilerplate') %>
+
+<body class="bg-light">
+  <div class="container mt-5">
+    <h2 class="text-center mb-4"><b>Let's Explore the World with WanderLust</b></h2>
+    <h4 class="text-center mb-4">Edit Listing Details:</h4>
+    <div class="form-container">
+      <form action="/listings/<%= listing._id %>?_method=PATCH" method="POST" 
+            class="bg-white p-4 rounded shadow-sm needs-validation" novalidate
+            enctype="multipart/form-data">
+        
+        <div class="mb-3">
+          <label for="title" class="form-label">Title:</label>
+          <input type="text" name="listing[title]" id="title" class="form-control" required
+            value="<%= listing.title %>">
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description:</label>
+          <textarea name="listing[description]" id="description" class="form-control"
+            rows="3" required><%= listing.description %></textarea>
+        </div>
+
+        <div class="mb-3">
+          Original Listing Image : <br>
+          <img src="<%= originalImageUrl %>" alt="" class="responsive-img">
+        </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload New Image:</label>
+          <input type="file" name="listing[image]" id="image" class="form-control">
+          <div class="form-text">Leave empty to keep current image</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="price" class="form-label">Price (₹):</label>
+            <input type="number" name="listing[price]" id="price" class="form-control" required
+              value="<%= listing.price %>">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="location" class="form-label">Location:</label>
+            <input type="text" name="listing[location]" id="location" class="form-control" required
+              value="<%= listing.location %>">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="country" class="form-label">Country:</label>
+          <input type="text" name="listing[country]" id="country" class="form-control" required 
+                 value="<%= listing.country %>">
+        </div>
+
+        <!-- Category Dropdown - Added -->
+        <div class="mb-3">
+          <label for="category" class="form-label">Category:</label>
+          <select name="listing[category]" id="category" class="form-select" required>
+            <option value="" disabled <%= !listing.category ? 'selected' : '' %>>Choose a category</option>
+            <option value="beach" <%= (listing.category === 'beach') ? 'selected' : '' %>>Beach</option>
+            <option value="mountain" <%= (listing.category === 'mountain') ? 'selected' : '' %>>Mountain</option>
+            <option value="city" <%= (listing.category === 'city') ? 'selected' : '' %>>City</option>
+            <option value="cabin" <%= (listing.category === 'cabin') ? 'selected' : '' %>>Cabin</option>
+            <option value="desert" <%= (listing.category === 'desert') ? 'selected' : '' %>>Desert</option>
+            <option value="lake" <%= (listing.category === 'lake') ? 'selected' : '' %>>Lake</option>
+            <option value="boat" <%= (listing.category === 'boat') ? 'selected' : '' %>>Boat</option>
+            <option value="camping" <%= (listing.category === 'camping') ? 'selected' : '' %>>Camping</option>
+            <option value="pool" <%= (listing.category === 'pool') ? 'selected' : '' %>>Pool</option>
+            <option value="omg" <%= (listing.category === 'omg') ? 'selected' : '' %>>OMG!</option>
+          </select>
+          <div class="invalid-feedback">
+            Please select a category.
+          </div>
+          
+          <!-- Show warning for old listings without category -->
+          <% if (!listing.category) { %>
+            <div class="form-text text-warning">
+              <i class="fas fa-exclamation-triangle"></i> 
+              This listing doesn't have a category. Please select one.
+            </div>
+          <% } %>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary flex-fill">Update Listing</button>
+          <a href="/listings/<%= listing._id %>" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,75 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <div class="error-page">
+        <h1 class="display-1 text-danger">404</h1>
+        <h2 class="mb-4">Page Not Found</h2>
+        <p class="lead mb-4">
+          Sorry, the page you're looking for doesn't exist. 
+        </p>
+        <p>
+          It might have been moved, deleted, or you entered the wrong URL.
+        </p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <a href="/listings" class="btn btn-primary">
+            <i class="fas fa-home me-2"></i>Go to Listings
+          </a>
+          <button onclick="history.back()" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-2"></i>Go Back
+          </button>
+        </div>
+        
+        <hr class="my-4">
+        
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <h5>Popular Categories</h5>
+            <ul class="list-unstyled">
+              <li><a href="/listings?category=beach">Beach</a></li>
+              <li><a href="/listings?category=mountain">Mountain</a></li>
+              <li><a href="/listings?category=city">City</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="/listings">All Listings</a></li>
+              <li><a href="/listings?category=trending">Trending</a></li>
+              <li><a href="/listings/new">Add Listing</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Account</h5>
+            <ul class="list-unstyled">
+              <% if (currUser) { %>
+                <li><a href="/listings">My Dashboard</a></li>
+              <% } else { %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.error-page {
+  padding: 1rem 0;
+}
+
+.error-page .display-1 {
+  font-size: 8rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .error-page .display-1 {
+    font-size: 5rem;
+  }
+}
+</style>

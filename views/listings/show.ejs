@@ -1,0 +1,223 @@
+<% layout('layouts/boilerplate') %>
+
+  <body class="bg-light">
+    <div class="container mt-5">
+      <h2 class="text-center mb-4"><b>Let's Explore this Listing</b></h2>
+      <h4 class="text-center mb-4 showtitle"><b>
+          <%= listing.title %>
+        </b></h4>
+
+      <div class="card mx-auto shadow-sm p-3" style="max-width: 900px;">
+        <div class="row g-4 align-items-center">
+          <!-- Image Section -->
+          <div class="col-md-6">
+            <img src="<%= listing.image.url %>" class="img-fluid rounded" alt="<%= listing.title %>">
+          </div>
+
+          <!-- Details Section -->
+          <div class="col-md-6">
+            <div class="card-body p-0">
+              <!-- <h5 class="card-title mb-3"></h5> -->
+
+              <p class="card-text"><strong>Owner:</strong>
+                <% if (listing.owner && listing.owner.username) { %>
+                  <%= listing.owner.username %>
+                    <% } else { %>
+                      Unknown
+                      <% } %>
+              </p>
+
+              <p class="card-text"><strong>Description:</strong>
+                <%= listing.description %>
+              </p>
+              <p class="card-text"><strong>Price:</strong> ₹<%= listing.price.toLocaleString("en-IN") %>
+              </p>
+              <p class="card-text"><strong>Location:</strong>
+                <%= listing.location %>
+              </p>
+              <p class="card-text"><strong>Country:</strong>
+                <%= listing.country %>
+              </p>
+              <% if (currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>
+
+                <div class="d-flex justify-content-between mt-4">
+                  <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-primary">Edit</a>
+                  <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST"
+                    onsubmit="return confirm('Are you sure?');">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </form>
+                </div>
+                <%}%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if(currUser) { %>
+      <hr>
+
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-10 col-lg-8">
+
+            <h4>Leave a Review:</h4>
+            <form action="/listings/<%= listing.id %>/reviews" method="post" novalidate class="needs-validation">
+              <div class="mb-3 mt-3">
+
+                <fieldset class="starability-slot">
+                  <legend>Rating: <span class="text-danger">*</span></legend>
+                  <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0"
+                    aria-label="No rating." style="display: none;" checked/>
+
+                  <input type="radio" id="first-rate1" name="review[rating]" value="1" required />
+                  <label for="first-rate1" title="Terrible">1 star</label>
+
+                  <input type="radio" id="first-rate2" name="review[rating]" value="2" required />
+                  <label for="first-rate2" title="Not good">2 stars</label>
+
+                  <input type="radio" id="first-rate3" name="review[rating]" value="3" required />
+                  <label for="first-rate3" title="Average">3 stars</label>
+
+                  <input type="radio" id="first-rate4" name="review[rating]" value="4" required />
+                  <label for="first-rate4" title="Very good">4 stars</label>
+
+                  <input type="radio" id="first-rate5" name="review[rating]" value="5" required />
+                  <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+                <div class="invalid-feedback" style="display: none;">
+                  Please select a rating.
+                </div>
+
+              </div>
+              <div class="mb-3 mt-3">
+                <label for="comment" class="form-label">Comments</label>
+                <textarea name="review[comment]" id="comment" cols="100" rows="3" class="form-control"
+                  required></textarea>
+                <div class="invalid-feedback">Please add your comment</div>
+              </div>
+              <button type="submit" class="btn btn-outline-dark">Submit</button>
+            </form>
+
+            <% } %>
+              <% if(listing.reviews.length>0 ){ %>
+                <hr>
+                <div class="container">
+                  <h4>All Reviews</h4>
+                  <div class="row">
+                    <% for (let review of listing.reviews) { %>
+                      <div class="col-md-6 mb-3">
+                        <div class="card w-100">
+                          <div class="card-body">
+                            <h5 class="card-title">
+                              <%= review.author.username %>
+                            </h5>
+                            <!-- <h6 class="card-subtitle mb-2 text-body-secondary">Rating: <%= review.rating %> -->
+                            <!-- </h6> -->
+                            <p class="starability-result card-text" data-rating="<%= review.rating %>">
+                              
+                            </p>
+                            <p class="card-text">
+                              <%= review.comment %>
+                            </p>
+                          </div>
+                          <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
+                            method="POST" class="mb-2 d-inline">
+                            <button type="submit"
+                              class="btn btn-outline-danger btn-sm d-flex align-items-center gap-1 deleteReviewbtn">
+                              <i class="fa-solid fa-trash"></i> Delete
+                            </button>
+                          </form>
+
+                        </div>
+                      </div>
+                      <% } %>
+                  </div>
+                </div>
+                <%}%>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-10 col-lg-8">
+            <hr>
+            <h4>Where are we:</h4>
+            <div id="map" style="height: 400px; width: 100%; border-radius: 8px; margin-bottom: 20px;"></div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <script>
+        window.addEventListener('load', function () {
+          if (typeof initializeMap === 'function') {
+            // Use default coordinates if database values are missing
+            const lat = '<%= listing.latitude %>' || 24.896389;
+            const lng = '<%= listing.longitude %>' || 80.259167;
+
+            initializeMap(
+              lat,
+              lng,
+              '<%= listing.title %>',
+              '<%= listing.location %>',
+              '<%= listing.country %>',
+              '<%= listing.price %>'
+            );
+          }
+        });
+      </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const reviewForm = document.querySelector('form[action*="reviews"]');
+          const ratingInputs = document.querySelectorAll('input[name="review[rating]"]:not(.input-no-rate)');
+          const errorDiv = document.querySelector('.invalid-feedback');
+
+          if (reviewForm) {
+            reviewForm.addEventListener('submit', function (e) {
+              const isRatingSelected = Array.from(ratingInputs).some(input => input.checked);
+
+              if (!isRatingSelected) {
+                e.preventDefault();
+
+                // Show error message
+                errorDiv.style.display = 'block';
+                errorDiv.style.color = '#dc3545';
+                errorDiv.innerHTML = 'Please select a rating';
+
+                // Add red border to fieldset
+                const fieldset = document.querySelector('.starability-slot');
+                fieldset.style.border = '2px solid #dc3545';
+                fieldset.style.borderRadius = '5px';
+                fieldset.style.padding = '10px';
+
+                // Scroll to error
+                fieldset.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                return false;
+              }
+            });
+
+            // Remove error when user selects rating
+            ratingInputs.forEach(input => {
+              input.addEventListener('change', function () {
+                if (this.checked) {
+                  errorDiv.style.display = 'none';
+
+                  const fieldset = document.querySelector('.starability-slot');
+                  fieldset.style.border = 'none';
+                  fieldset.style.padding = '0';
+                }
+              });
+            });
+          }
+        });
+      </script>
+
+
+
+
+  </body>

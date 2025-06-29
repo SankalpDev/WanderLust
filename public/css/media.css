@@ -1,0 +1,366 @@
+@media (max-width: 576px) {
+  .card {
+    margin-bottom: 2rem !important;
+  }
+
+  .card-img-top {
+    height: 12rem !important;
+  }
+
+  .card-body {
+    padding: 1rem !important;
+  }
+
+  .filter-item {
+    font-size: 0.7rem !important;
+    padding: 0.4rem 0.2rem !important;
+    min-width: 60px !important;
+  }
+
+  .filter-item i {
+    font-size: 1rem !important;
+  }
+
+  body {
+    font-size: 0.9rem !important;
+  }
+
+  .btn {
+    font-size: 0.9rem !important;
+    padding: 0.5rem 1rem !important;
+  }
+
+  .deleteReviewbtn {
+    font-size: 0.75rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  .responsive-img {
+    max-width: 100%;
+  height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    height: 4rem !important;
+  }
+
+  #filters {
+    top: 0.3rem !important;
+  }
+
+  /* Hide search bar on desktop navbar */
+  .navbar .d-flex.flex-grow-1 form {
+    display: none !important;
+  }
+
+  /* Show search in collapsed menu */
+  .navbar-collapse form {
+    display: block !important;
+    margin: 1rem 0 !important;
+  }
+
+  .navbar-collapse .input-group {
+    width: 100% !important;
+  }
+
+  .alert-info {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+
+  .alert-info .btn {
+    align-self: flex-end !important;
+  }
+
+  .card-img-top {
+    height: 15rem !important;
+  }
+
+  .filter-item {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.3rem !important;
+    min-width: 70px !important;
+  }
+
+  .filter-item i {
+    font-size: 1.2rem !important;
+  }
+
+  .f-info {
+    height: auto !important;
+    padding: 2rem 1rem !important;
+  }
+
+  .form-container {
+    padding: 1.5rem !important;
+    margin: 1rem !important;
+  }
+
+  .showtitle {
+    font-size: 1.5rem !important;
+  }
+  .responsive-img {
+    max-width: 100%;
+  height: auto;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar .input-group {
+    width: 250px !important;
+  }
+
+  .card-img-top {
+    height: 18rem !important;
+  }
+
+  .filter-item {
+    font-size: 0.8rem !important;
+    padding: 0.6rem 0.4rem !important;
+  }
+
+  .filter-item i {
+    font-size: 1.3rem !important;
+  }
+  .responsive-img {
+    max-width: 100%;
+  height: auto;
+  }
+}
+
+
+/* for very small screens */
+/* Extra small screens - Below 576px */
+@media (max-width: 575.98px) {
+  /* Make filters wrap in multiple rows instead of single scrollable line */
+  #filters .d-flex {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    padding: 1rem 0.5rem !important;
+  }
+
+  /* Larger filter items for better touch targets */
+  .filter-item {
+    min-width: 70px !important;
+    max-width: 80px !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.3rem !important;
+    white-space: normal !important;
+    text-align: center !important;
+    flex-shrink: 0 !important;
+    border-radius: 0.5rem !important;
+  }
+
+  .filter-item i {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.25rem !important;
+    display: block !important;
+  }
+
+  .filter-item span {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+    display: block !important;
+  }
+
+  /* Ensure filter container has proper height */
+  #filters {
+    min-height: auto !important;
+    padding: 0.5rem 0 !important;
+  }
+
+  /* Remove scroll indicators on very small screens */
+  #filters::before,
+  #filters::after {
+    display: none !important;
+  }
+
+  /* Better spacing for wrapped layout */
+  .filter-link {
+    margin: 0.25rem !important;
+  }
+
+  /* Active state more prominent on small screens */
+  .filter-item.active {
+    transform: scale(1.05) !important;
+    box-shadow: 0 2px 8px rgba(255, 56, 92, 0.4) !important;
+  }
+}
+
+/* Ultra small screens - Below 400px */
+@media (max-width: 399.98px) {
+  .filter-item {
+    min-width: 60px !important;
+    max-width: 70px !important;
+    font-size: 0.7rem !important;
+    padding: 0.5rem 0.2rem !important;
+  }
+
+  .filter-item i {
+    font-size: 1rem !important;
+  }
+
+  .filter-item span {
+    font-size: 0.65rem !important;
+  }
+
+  #filters .d-flex {
+    gap: 0.3rem !important;
+    padding: 0.8rem 0.3rem !important;
+  }
+}
+
+/*---------------*/
+/* Mobile List View - Below 576px */
+@media (max-width: 575.98px) {
+  /* Hide the card layout */
+  .card.col {
+    display: none !important;
+  }
+  
+  /* Show mobile list layout */
+  .mobile-list-view {
+    display: block !important;
+  }
+  
+  .mobile-list-item {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .mobile-list-content {
+    flex-grow: 1;
+  }
+  
+  .mobile-list-title {
+    font-weight: 700;
+    color: #222222;
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+  }
+  
+  .mobile-list-location {
+    color: #484848;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .mobile-list-price {
+    color: #ff385c;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  
+  .mobile-more-btn {
+    background-color: #ff385c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .mobile-more-btn:hover {
+    background-color: #e03150;
+    color: white;
+    text-decoration: none;
+  }
+}
+
+/* Hide mobile list on larger screens */
+@media (min-width: 576px) {
+  .mobile-list-view {
+    display: none !important;
+  }
+}
+
+
+
+/* Filters Media  */
+@media (max-width: 992px) {
+  #filters .d-flex {
+    justify-content: flex-start !important;
+    gap: 0.5rem !important;
+  }
+  
+  .filter-item {
+    min-width: 70px !important;
+    font-size: 0.8rem !important;
+    padding: 0.6rem 0.4rem !important;
+  }
+  
+  .filter-item i {
+    font-size: 1.3rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #filters .d-flex {
+    gap: 0.25rem !important;
+  }
+  
+  .filter-item {
+    min-width: 60px !important;
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.3rem !important;
+  }
+  
+  .filter-item i {
+    font-size: 1.2rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  #filters .d-flex {
+    gap: 0.2rem !important;
+  }
+  
+  .filter-item {
+    min-width: 55px !important;
+    font-size: 0.7rem !important;
+    padding: 0.4rem 0.2rem !important;
+  }
+  
+  .filter-item i {
+    font-size: 1rem !important;
+  }
+}
+
+
+/* Print */
+
+
+
+@media print {
+
+  .navbar,
+  .f-info,
+  #filters,
+  .btn {
+    display: none !important;
+  }
+
+  .card {
+    break-inside: avoid;
+    margin-bottom: 1rem !important;
+  }
+
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+}

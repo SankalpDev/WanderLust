@@ -1,0 +1,127 @@
+#filters {
+  background-color: #fff;
+  border-bottom: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  z-index: 1020;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0.3rem;
+}
+
+.filter-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.filter-item {
+  position: relative !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #333;
+  padding: 0.75rem 0.5rem;
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+  min-width: 80px;
+  text-decoration: none;
+  border: 2px solid transparent !important;
+  background-color: transparent !important;
+}
+
+.filter-item i {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+  line-height: 1;
+}
+
+.filter-item:hover {
+  transform: translateY(-3px);
+  background-color: #f8f9fa;
+  color: #ff385c;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.filter-item:focus {
+  outline: 2px solid #ff385c !important;
+  outline-offset: 2px !important;
+  text-decoration: none;
+}
+
+.filter-item.active {
+  background-color: #ff385c !important;
+  color: white !important;
+  font-weight: 600 !important;
+  border: 2px solid #ff385c !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(255, 56, 92, 0.3) !important;
+}
+
+.filter-item.active i {
+  color: white !important;
+}
+
+/* ===== FILTER HORIZONTAL SCROLLING FIX ===== */
+
+#filters .d-flex {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+  -webkit-overflow-scrolling: touch !important; /* Smooth scrolling on iOS */
+  scrollbar-width: thin !important; /* Firefox */
+  padding-bottom: 0.5rem !important;
+}
+
+#filters .d-flex::-webkit-scrollbar {
+  height: 4px !important;
+}
+
+#filters .d-flex::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+  border-radius: 2px !important;
+}
+
+#filters .d-flex::-webkit-scrollbar-thumb {
+  background: #ff385c !important;
+  border-radius: 2px !important;
+}
+
+#filters .d-flex::-webkit-scrollbar-thumb:hover {
+  background: #e03150 !important;
+}
+
+.filter-item {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+#filters::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(to left, rgba(255,255,255,0.8), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+#filters::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(to right, rgba(255,255,255,0.8), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+#filters {
+  position: relative !important;
+}
+
